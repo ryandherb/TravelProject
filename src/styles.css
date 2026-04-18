@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 320px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+input:focus {
+    border-color: #4facfe;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #4facfe;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00c6ff;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#modalTitle {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 60px;
+    color: 1c1c1e;
+    position: relative;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow:
+        2px 2px 5px rgba(135, 206, 235, 0.7),
+        -2px -2px 5px rgba(255, 255, 255, 0.8),
+        2px -2px 5px rgba(255, 255, 255, 0.8);
+}
+
+
+.modal-content {
+    background: white;
+    margin: 0% auto 0;
+    padding: 20px;
+    width: 60%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.close {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+textarea {
+    width: 90%;
+    height: 120px;
+    margin-top: 10px;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    resize: none;
+}
+
+p {
+    white-space: pre-wrap;
+    text-align: left;
+}
+
+locationName {
+    font-weight: bold;
+    font-size: 20px;
+}
+locationDesc {
+    font-size: 18px; 
+}
+locationAddr {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.ImageCarousel img {
+    width: 40%; height: auto;
+    max-height: 500px;
+}
+
+.Image-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 1000;
+}
+
+.Image-buttons button {
+    padding: 10px 25px;
+    border-radius: 8px;
+    border: none;
+    background: #4facfe;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.Image-buttons button:hover {
+    background: #00c6ff;
+}

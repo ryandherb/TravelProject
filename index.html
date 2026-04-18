@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vacation Planner</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Vacation Planner</h2>
+    <label id="location">Vacation Location</label>
+    <input type="text" id="locationInput" name="location">
+
+    <label id="duration">Length of Stay</label>
+    <input type="text" id="durationInput" name="duration">
+
+    <button id="query">Plan Trip</button>
+
+  </div>
+
+  <div id="tripModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modalTitle">Location</h2>
+      <div id="outputBox"></div>
+      <div class="ImageCarousel">
+        <img id="locationImage"></img>
+      </div>
+      <div class="Image-buttons">
+        <button id="nextImage" type="button">Next Image</button>
+        <button id="previousImage" type="button">Previous Image</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+  </div>
+
+</body>
+
+</html>
