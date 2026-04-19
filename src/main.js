@@ -1,9 +1,6 @@
 import ollama from 'ollama';
 import axios from 'axios';
 
-// Get API Key from .env file to obscure key
-const apiKey = import.meta.env.VITE_API_KEY;
-
 const queryButton = document.getElementById("query");
 const locationInput = document.getElementById("locationInput");
 const durationInput = document.getElementById("durationInput");
@@ -62,8 +59,6 @@ queryButton.addEventListener('click', async function () {
   const imageResponse = await axios.get("http://localhost:3000/images", {
     params: {
       q: `${location} photos`,
-      location,
-      apiKey,
     }
   })
   console.log("Images fetched!")

@@ -2,18 +2,20 @@ import express from 'express';
 import axios from 'axios'; 
 import cors from 'cors'; 
 
+const api_key = process.env.API_KEY;
+
 const app = express(); 
 app.use(cors()); 
 
 app.get("/images", async(req, res) => {
     try {
-        const { q, location, apiKey } = req.query; 
+        const { q } = req.query; 
         const response = await axios.get('https://serpapi.com/search', {
             params: {
                 engine: "google_images",
                 q,
                 hl: "en",
-                api_key: apiKey
+                api_key
             }
         });
 
