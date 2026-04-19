@@ -8,9 +8,11 @@ const queryButton = document.getElementById("query");
 const locationInput = document.getElementById("locationInput");
 const durationInput = document.getElementById("durationInput");
 
+const interstitialLoader = document.getElementById("loader");
+
 const modal = document.getElementById("tripModal");
 const modalTitle = document.getElementById("modalTitle");
-const closeButton = document.querySelector("close"); 
+const closeButton = document.querySelector("close");
 
 const outputBox = document.getElementById("outputBox");
 const locationImage = document.getElementById("locationImage");
@@ -40,6 +42,9 @@ queryButton.addEventListener('click', async function () {
     alert("Please enter a location and duration!");
     return;
   }
+
+  // Show loading spinner
+  interstitialLoader.style.display = "block";
 
   // SFX for loading
   const sbSound = new Audio('/Seatbelt-sound-effect.mp3');
@@ -112,13 +117,16 @@ queryButton.addEventListener('click', async function () {
   // Set HTML content to the recieved content
   modalTitle.textContent = location;
   outputBox.innerHTML = '<p>' + itinerary + '</p>';
+
+  // End Interstitial
   jazz.pause();
+  interstitialLoader.style.display = "none";
 
   modal.style.display = "block";
 
   // Modal exit functionality
   window.addEventListener("click", function (event) {
-    event.preventDefault(); 
+    event.preventDefault();
     if (event.target === modal || event.target === closeButton) {
       modal.style.display = "none";
     }
