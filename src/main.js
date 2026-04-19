@@ -47,6 +47,19 @@ queryButton.addEventListener('click', async function () {
   const sbSound = new Audio('/Seatbelt-sound-effect.mp3');
   const jazz = new Audio('/Backbay Lounge.mp3');
 
+
+  function endLoad(err = null) {
+    jazz.pause();
+    interstitialLoader.style.display = "none";
+
+    if (err) {
+      console.error(err.message);
+      alert("There's been an error on our end! Please try again later.");
+    } else {
+      modal.style.display = "block";
+    }
+  }
+
   // Allows the seatbelt sound to finish before playing the jazz
   await new Promise(resolve => {
     sbSound.onended = resolve;
@@ -56,21 +69,31 @@ queryButton.addEventListener('click', async function () {
 
   // Queries the backend at server.js to recieve photos for the location
   console.log(`Fetching images of ${location}`);
-  const imageResponse = await axios.get("http://localhost:3000/images", {
-    params: {
-      q: `${location} photos`,
-    }
-  })
+  try {
+    const imageResponse = await axios.get("http://localhost:3000/images", {
+      params: {
+        q: `${location} photos`,
+      }
+    })
+  } catch (err) {
+    endLoad(err);
+    return;
+  }
   console.log("Images fetched!")
   const images = imageResponse.data;
 
   // Gets the LLM's response with the variables given by the user
   console.log(`Querying with:\nlocation: ${location}\nduration: ${duration}`)
-  const response = await ollama.chat({
-    model: 'qwen2.5vl:3b',
-    messages: [{ role: 'system', content: systemMessage }, { role: 'user', content: `location: ${location} duration: ${duration}` }],
-    format: 'json'
-  });
+  try {
+    const response = await ollama.chat({
+      model: 'qwen2.5vl:3b',
+      messages: [{ role: 'system', content: systemMessage }, { role: 'user', content: `location: ${location} duration: ${duration}` }],
+      format: 'json'
+    });
+  } catch (err) {
+    endLoad(err);
+    return;
+  }
   console.log("Locations fetched!");
   const details = JSON.parse(response.message.content);
 
@@ -114,10 +137,7 @@ queryButton.addEventListener('click', async function () {
   outputBox.innerHTML = '<p>' + itinerary + '</p>';
 
   // End Interstitial
-  jazz.pause();
-  interstitialLoader.style.display = "none";
-
-  modal.style.display = "block";
+  endLoad();
 
   // Modal exit functionality
   window.addEventListener("click", function (event) {
